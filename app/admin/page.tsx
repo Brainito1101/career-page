@@ -44,9 +44,6 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-// Remove the mockApplications and mockHireRequests arrays
-
-// Add useEffect to fetch data
 export default function AdminPanel() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [loginData, setLoginData] = useState({ email: "", password: "" })
@@ -62,8 +59,10 @@ export default function AdminPanel() {
   const ADMIN_PASSWORD = "brainito2024"
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    if (isLoggedIn) {
+      fetchData()
+    }
+  }, [isLoggedIn])
 
   const fetchData = async () => {
     try {
